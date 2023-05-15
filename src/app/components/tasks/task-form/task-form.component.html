@@ -1,0 +1,64 @@
+<div class="w-full h-full p-6 space-y-6 flex flex-col">
+  <div class="w-full flex items-center justify-between">
+    <h2 class="text-2xl font-semibold">{{ title }}</h2>
+    <button
+      *ngIf="isEdit"
+      class="w-4 h-4 flex items-center rounded-full text-xs p-2 justify-center text-red-600 border border-red-600"
+      (click)="onResetSelected()"
+    >
+      <span class="fa fa-times"></span>
+    </button>
+  </div>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div class="w-full grid grid-cols-2 gap-6">
+      <div class="col-span-full w-full flex flex-col">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          formControlName="title"
+          class="w-full border rounded-xl p-3"
+        />
+      </div>
+      <div class="col-span-1 w-full flex flex-col">
+        <label for="priority">Priority</label>
+        <select
+          name="priority"
+          id="priority"
+          formControlName="priority"
+          class="w-full rounded-xl p-3 border"
+        >
+          <option value="0">Low</option>
+          <option value="1">Medium</option>
+          <option value="2">High</option>
+        </select>
+      </div>
+      <div class="col-span-1 w-full flex flex-col">
+        <label for="dueDate">Due Date</label>
+        <input
+          type="date"
+          formControlName="dueDate"
+          class="w-full border rounded-xl p-3"
+        />
+      </div>
+      <div class="col-span-full w-full flex flex-col">
+        <label for="title">Title</label>
+        <textarea
+          name="notes"
+          id="notes"
+          cols="30"
+          rows="10"
+          formControlName="notes"
+          class="w-full p-3 rounded-xl border"
+        ></textarea>
+      </div>
+      <div class="col-span-full flex justify-end items-center space-x-4">
+        <button
+          [disabled]="taskForm.invalid || (loading$ | async)"
+          class="disabled:cursor-not-allowed px-6 py-2 text-lg text-white bg-violet-600 rounded-full"
+        >
+          {{ (loading$ | async) ? "loading..." : "Enregistrer" }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

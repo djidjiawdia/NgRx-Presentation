@@ -1,0 +1,26 @@
+<div class="w-full h-full flex flex-col justify-center items-center space-y-4">
+  <div class="flex items-center space-x-6">
+    <button
+      (click)="onDecrement()"
+      class="w-10 h-10 rounded-xl flex items-center justify-center bg-pink-600 text-white"
+    >
+      <span class="fa fa-minus"></span>
+    </button>
+    <span class="text-xl">{{ count$ | async }}</span>
+    <button
+      (click)="onIncrement()"
+      class="w-10 h-10 rounded-xl flex items-center justify-center bg-pink-600 text-white"
+    >
+      <span class="fa fa-plus"></span>
+    </button>
+  </div>
+  <div class="flex items-center space-x-4">
+    <input type="number" #factor class="border p-3" />
+    <button
+      class="p-3 rounded-full bg-pink-600 text-white"
+      (click)="onMultiply(+factor.value)"
+    >
+      multiply
+    </button>
+  </div>
+</div>
